@@ -16,6 +16,10 @@ const userSchema = Schema(
       required: true,
       minlength: 6,
     },
+    station: {
+      type: String,
+      required: true,
+    },
     token: {
       type: String,
       default: null,
