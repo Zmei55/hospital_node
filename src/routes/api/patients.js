@@ -12,7 +12,7 @@ router.get('/', auth, ctrlWrapper(ctrl.getAll));
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
 //? GET одного пациента по name
-router.get('/:name', auth, ctrlWrapper(ctrl.getByName));
+router.post('/name', auth, ctrlWrapper(ctrl.getByName));
 
 //? POST на добавление пациента
 router.post('/', auth, ctrlWrapper(ctrl.add));
