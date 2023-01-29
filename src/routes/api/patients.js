@@ -8,8 +8,11 @@ const router = express.Router();
 //? GET всех пациентов
 router.get('/', auth, ctrlWrapper(ctrl.getAll));
 
-//? GET одного пациента
+//? GET одного пациента по id
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
+
+//? GET одного пациента по name
+router.get('/:name', auth, ctrlWrapper(ctrl.getByName));
 
 //? POST на добавление пациента
 router.post('/', auth, ctrlWrapper(ctrl.add));
