@@ -11,11 +11,11 @@ router.get('/', auth, ctrlWrapper(ctrl.getAll));
 //? GET одного пациента по id
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
-//? GET одного пациента по name
-router.post('/name', auth, ctrlWrapper(ctrl.getByName));
+//? POST поиск пациента по полю переданному в теле запроса
+router.post('/', auth, ctrlWrapper(ctrl.getByName));
 
 //? POST на добавление пациента
-router.post('/', auth, ctrlWrapper(ctrl.add));
+router.post('/add', auth, ctrlWrapper(ctrl.add));
 
 //? DELETE на удаление пациента
 router.delete('/:id', auth, ctrlWrapper(ctrl.removeById));
