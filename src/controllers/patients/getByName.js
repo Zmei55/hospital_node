@@ -5,6 +5,10 @@ const getByName = async (req, res) => {
   const { name: patientName, birthDate, cardNumber } = req.body;
 
   let result = [];
+  // all patients
+  if (patientName === '' && birthDate === '' && cardNumber === '') {
+    result = await Patient.find({});
+  }
   // only name
   if (patientName !== '' && birthDate === '' && cardNumber === '') {
     result = await Patient.find({ name: patientName });
@@ -21,7 +25,7 @@ const getByName = async (req, res) => {
   if (patientName !== '' && birthDate !== '' && cardNumber === '') {
     result = await Patient.find({ name: patientName, birthDate: birthDate });
   }
-  // all
+  // all fields
   if (patientName !== '' && birthDate !== '' && cardNumber !== '') {
     result = await Patient.find({
       name: patientName,
