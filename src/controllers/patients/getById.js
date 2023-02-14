@@ -5,7 +5,7 @@ const getById = async (req, res) => {
   const { id } = req.params;
   const result = await Patient.findById(id);
   if (!result) {
-    throw new NotFound(`Patient with id=${id} not found`);
+    throw new NotFound(`Patient with id=${id} not found. Node`);
   }
   res.json({
     status: 'success',

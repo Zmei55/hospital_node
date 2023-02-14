@@ -4,7 +4,7 @@ const { Patient } = require('../../models');
 const getAll = async (req, res) => {
   const result = await Patient.find({}, '-createdAt -updatedAt');
   if (!result) {
-    throw new NotFound(`Patients not found`);
+    throw new NotFound(`Patients not found. Node`);
   }
   res.json({
     status: 'success',

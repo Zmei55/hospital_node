@@ -34,7 +34,7 @@ const getByName = async (req, res) => {
     });
   }
   if (!result) {
-    throw new NotFound(`Patient with name=${patientName} not found`);
+    throw new NotFound(`Patient with name=${patientName} not found. Node`);
   }
   res.json({
     status: 'success',
