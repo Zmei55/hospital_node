@@ -53,8 +53,6 @@ const patientSchema = Schema(
         required: true,
       },
     },
-    services: [],
-    containers: [],
   },
   { versionKey: false, timestamps: true }
 );
