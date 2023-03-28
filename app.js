@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-const { DB_HOST, PORT = 3001 } = process.env;
+const { DB_HOST, PORT } = process.env;
 
 mongoose.set('strictQuery', true);
 mongoose
