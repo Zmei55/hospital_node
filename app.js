@@ -12,7 +12,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://zmei55.github.io'],
   })
 );
 app.use(express.json());
