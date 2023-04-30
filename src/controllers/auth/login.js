@@ -7,10 +7,10 @@ const { User } = require('../../models');
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
-  const { logName, password } = req.body;
+  const { logName, password, station } = req.body;
   const user = await User.findOne({ logName });
   const passCompare = bcrypt.compareSync(password, user.password);
-  if (!user || !passCompare) {
+  if (!user || !passCompare || user.station !== station) {
     throw new Unauthorized('Login or password is wrong. Node');
   }
   const payload = {
