@@ -33,7 +33,7 @@ const getByName = async (req, res) => {
       cardNumber: cardNumber,
     });
   }
-  if (!result) {
+  if (result.length === 0) {
     throw new NotFound(`Patient with name=${patientName} not found. Node`);
   }
   res.json({
