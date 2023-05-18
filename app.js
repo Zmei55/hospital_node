@@ -6,6 +6,8 @@ require('dotenv').config();
 const authRouter = require('./src/routes/api/auth');
 const usersRouter = require('./src/routes/api/users');
 const patientsRouter = require('./src/routes/api/patients');
+// const swaggerDocs = require('./src/utils/swagger');
+const { swaggerUI, swaggerSpec } = require('./src/utils/swagger');
 
 const app = express();
 
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/patients', patientsRouter);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
@@ -37,6 +40,7 @@ mongoose
   .connect(DB_HOST)
   .then(() => {
     app.listen(PORT);
+    // swaggerDocs(app, port);
   })
   .catch(error => {
     console.log(error.message);

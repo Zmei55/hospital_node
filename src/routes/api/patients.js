@@ -5,6 +5,21 @@ const { patients: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
+/**
+ * @swagger
+ *  get:
+ *    summary: Returns the list of all the patients
+ *    responses:
+ *      200:
+ *        description: The list of the patients
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/User'
+ */
+
 //? GET всех пациентов
 router.get('/', auth, ctrlWrapper(ctrl.getAll));
 
