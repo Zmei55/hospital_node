@@ -14,7 +14,11 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://zmei55.github.io'],
+    origin: [
+      'http://localhost:3000',
+      'https://zmei55.github.io',
+      'https://hospital-3upz.onrender.com/',
+    ],
   })
 );
 app.use(express.json());
