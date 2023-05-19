@@ -1,0 +1,646 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Hospital REST API",
+    "description": "Node Express REST API",
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "http//localhost:3001",
+  "basePath": "",
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "operationId": "registerNewUser",
+        "tags": ["/auth"],
+        "summary": "New user registration",
+        "description": "Returns the data of the new user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "registration",
+            "in": "body",
+            "description": "New user to add",
+            "schema": {
+              "type": "object",
+              "required": ["name", "logName", "password", "station"],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "logName": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "station": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 201,
+                "data": {
+                  "user": {
+                    "name": "UserName",
+                    "logName": "zxc",
+                    "station": "neurologisch"
+                  },
+                  "token": "lkdfjaskdjhf8928er.dfhjaksdjhfksjKDJLSKDJLSsdlkfslkd.kjsdfkjsr3209kjdfsl"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "operationId": "loginUser",
+        "tags": ["/auth"],
+        "summary": "User authorization",
+        "description": "Returns the data of the current user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "body",
+            "description": "User authorization",
+            "schema": {
+              "type": "object",
+              "required": ["logName", "password", "station"],
+              "properties": {
+                "logName": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "station": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "user": {
+                    "name": "UserName",
+                    "logName": "zxc",
+                    "station": "neurologisch"
+                  },
+                  "token": "lkdfjaskdjhf8928er.dfhjaksdjhfksjKDJLSKDJLSsdlkfslkd.kjsdfkjsr3209kjdfsl"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Login or password is wrong."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "get": {
+        "operationId": "logoutUser",
+        "tags": ["/auth"],
+        "summary": "logout",
+        "description": "Returns no data",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "logout",
+            "in": "query",
+            "description": "User logout"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204 No Content"
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Login or password is wrong."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/current": {
+      "get": {
+        "description": "Returns the data of the current user",
+        "operationId": "currentUser",
+        "tags": ["/user"],
+        "summary": "current user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "description": "data of the current user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "user": {
+                    "name": "UserName",
+                    "logName": "zxc",
+                    "station": "neurologisch"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "delete": {
+        "description": "Removes user data by id",
+        "operationId": "removesUser",
+        "tags": ["/user"],
+        "summary": "removes user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "removesUser",
+            "in": "query",
+            "description": "removes user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/patients/": {
+      "get": {
+        "operationId": "allPatients",
+        "tags": ["/patients"],
+        "summary": "all patients",
+        "description": "Returns an array of all patients",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "allPatients",
+            "in": "query",
+            "description": "array of all patients"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": "",
+                "birthDate": "",
+                "cardNumber": ""
+              }
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": ["..."]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "patients not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "filterByName",
+        "tags": ["/patients"],
+        "summary": "patients",
+        "description": "Returns an array of patients matching the given parameters",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "filterByName",
+            "in": "body",
+            "description": "Array of patients",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "birthDate": {
+                  "type": "string"
+                },
+                "cardNumber": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/Patient"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": ["..."]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/patients/{id}": {
+      "get": {
+        "operationId": "patientById",
+        "tags": ["/patients"],
+        "summary": "patient by id",
+        "description": "Returns the patient by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "patientById",
+            "in": "query",
+            "description": "Patient by id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Patient"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": {
+                    "_id": "fkmgalkfmvglafdvmlfd",
+                    "name": "Peter Parker",
+                    "birthDate": "1962-08-26T00:00:00.000Z",
+                    "cardNumber": "000000000",
+                    "gender": "masculine",
+                    "phoneNumber": "+18443627835",
+                    "identityDocument": "Comics #36",
+                    "services": ["..."],
+                    "containers": ["..."],
+                    "email": "peter_parker@mail.com",
+                    "residenceAddress": {
+                      "street": "Ingram Street",
+                      "houseNumber": "20",
+                      "city": "Нью-Йорк",
+                      "postcode": "11375"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Removes the patient data by id",
+        "operationId": "removesPatient",
+        "tags": ["/patients"],
+        "summary": "removes patient",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "removesPatient",
+            "in": "query",
+            "description": "removes patient"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "$ref": "#/definitions/Patient"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": {
+                    "_id": "fkmgalkfmvglafdvmlfd",
+                    "name": "Peter Parker",
+                    "birthDate": "1962-08-26T00:00:00.000Z",
+                    "cardNumber": "000000000",
+                    "gender": "masculine",
+                    "phoneNumber": "+18443627835",
+                    "identityDocument": "Comics #36",
+                    "services": ["..."],
+                    "containers": ["..."],
+                    "email": "peter_parker@mail.com",
+                    "residenceAddress": {
+                      "street": "Ingram Street",
+                      "houseNumber": "20",
+                      "city": "Нью-Йорк",
+                      "postcode": "11375"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/patients/add": {
+      "post": {
+        "operationId": "addNewPatient",
+        "tags": ["/patients"],
+        "summary": "New patient add",
+        "description": "Returns the data of the new patient",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "addPatient",
+            "in": "body",
+            "description": "New patient to add",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "birthDate",
+                "cardNumber",
+                "gender",
+                "phoneNumber",
+                "identityDocument",
+                "services",
+                "containers",
+                "email",
+                "residenceAddress"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "birthDate": {
+                  "type": "string"
+                },
+                "cardNumber": {
+                  "type": "number"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                },
+                "identityDocument": {
+                  "type": "string"
+                },
+                "services": {
+                  "type": "array"
+                },
+                "containers": {
+                  "type": "array"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "residenceAddress": {
+                  "type": "object",
+                  "required": ["street", "houseNumber", "city", "postcode"],
+                  "properties": {
+                    "street": {
+                      "type": "string"
+                    },
+                    "houseNumber": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "schema": {
+              "$ref": "#/definitions/Patient"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 201,
+                "data": {
+                  "result": {
+                    "_id": "fkmgalkfmvglafdvmlfd",
+                    "name": "Peter Parker",
+                    "birthDate": "1962-08-26T00:00:00.000Z",
+                    "cardNumber": "000000000",
+                    "gender": "masculine",
+                    "phoneNumber": "+18443627835",
+                    "identityDocument": "Comics #36",
+                    "services": ["..."],
+                    "containers": ["..."],
+                    "email": "peter_parker@mail.com",
+                    "residenceAddress": {
+                      "street": "Ingram Street",
+                      "houseNumber": "20",
+                      "city": "Нью-Йорк",
+                      "postcode": "11375"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "logName": {
+          "type": "string"
+        },
+        "station": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "Patient": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "number"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "identityDocument": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array"
+        },
+        "containers": {
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "residenceAddress": {
+          "street": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

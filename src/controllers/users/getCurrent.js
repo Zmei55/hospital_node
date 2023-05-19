@@ -1,7 +1,7 @@
 const { User } = require('../../models');
 
 const getCurrent = async (req, res) => {
-  const { name, logName } = req.user;
+  const { name, logName, station } = req.user;
   res.json({
     status: 'success',
     code: 200,
@@ -9,6 +9,7 @@ const getCurrent = async (req, res) => {
       user: {
         name,
         logName,
+        station,
       },
     },
   });
