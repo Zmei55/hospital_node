@@ -9,7 +9,7 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "http//localhost:3001",
+  "host": "https://hospital-3upz.onrender.com",
   "basePath": "",
   "consumes": ["application/json"],
   "produces": ["application/json"],
