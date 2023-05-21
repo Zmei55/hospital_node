@@ -274,8 +274,8 @@
               }
             }
           },
-          "default": {
-            "description": "patients not found",
+          "404": {
+            "description": "404 Not found",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -563,6 +563,218 @@
           }
         }
       }
+    },
+    "/api/services/": {
+      "get": {
+        "operationId": "filterByDate",
+        "tags": ["/services"],
+        "summary": "services",
+        "description": "Returns an array of services matching the given parameters",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "filterByDate",
+            "in": "body",
+            "description": "Array of services",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "serviceName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/Service"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": ["..."]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/add": {
+      "post": {
+        "operationId": "addNewService",
+        "tags": ["/services"],
+        "summary": "New service add",
+        "description": "Returns the data of the new service",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "addService",
+            "in": "body",
+            "description": "New service to add",
+            "schema": {
+              "type": "object",
+              "required": ["serviceName", "serviceCode", "serviceIsActive"],
+              "properties": {
+                "serviceName": {
+                  "type": "string"
+                },
+                "serviceCode": {
+                  "type": "string"
+                },
+                "serviceIsActive": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "schema": {
+              "$ref": "#/definitions/Service"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 201,
+                "data": {
+                  "result": {
+                    "serviceName": "Leber",
+                    "serviceCode": "L18.36.00.0.011",
+                    "serviceIsActive": true
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/requests/": {
+      "get": {
+        "operationId": "filterByDate",
+        "tags": ["/requests"],
+        "summary": "requests",
+        "description": "Returns an array of requests matching the given parameters",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "filterByDate",
+            "in": "body",
+            "description": "Array of requests",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "serviceName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/Request"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": ["..."]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/requests/add": {
+      "post": {
+        "operationId": "addNewRequest",
+        "tags": ["/requests"],
+        "summary": "New request add",
+        "description": "Returns the data of the new request",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "addRequest",
+            "in": "body",
+            "description": "New request to add",
+            "schema": {
+              "type": "object",
+              "required": ["patientId", "services", "containers"],
+              "properties": {
+                "patientId": {
+                  "type": "string"
+                },
+                "services": {
+                  "type": "array"
+                },
+                "containers": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 201,
+                "data": {
+                  "result": {
+                    "patientId": "ldskfJKLLzsdc",
+                    "services": ["..."],
+                    "containers": ["..."]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -570,6 +782,9 @@
       "type": "object",
       "required": [],
       "properties": {
+        "_id": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -630,6 +845,46 @@
           "postcode": {
             "type": "string"
           }
+        }
+      }
+    },
+    "Service": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "serviceCode": {
+          "type": "string"
+        },
+        "serviceIsActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Request": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "requestNumber": {
+          "type": "number"
+        },
+        "patientId": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array"
+        },
+        "containers": {
+          "type": "array"
+        },
+        "completed": {
+          "type": "boolean"
         }
       }
     },
