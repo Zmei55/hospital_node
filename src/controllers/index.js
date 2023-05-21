@@ -3,6 +3,7 @@ const users = require('./users');
 const patients = require('./patients');
 const requests = require('./requests');
 const services = require('./services');
+const labors = require('./laboratories');
 
 module.exports = {
   auth,
@@ -10,4 +11,5 @@ module.exports = {
   patients,
   requests,
   services,
+  labors,
 };

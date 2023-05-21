@@ -10,6 +10,7 @@ const usersRouter = require('./src/routes/api/users');
 const patientsRouter = require('./src/routes/api/patients');
 const servicesRouter = require('./src/routes/api/services');
 const requestsRouter = require('./src/routes/api/requests');
+const laborsRouter = require('./src/routes/api/laboratory');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/patients', patientsRouter);
 app.use('/api/services', servicesRouter);
 app.use('/api/requests', requestsRouter);
+app.use('/api/labors', laborsRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {

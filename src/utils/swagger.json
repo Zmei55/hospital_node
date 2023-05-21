@@ -565,7 +565,7 @@
       }
     },
     "/api/services/": {
-      "get": {
+      "post": {
         "operationId": "filterByDate",
         "tags": ["/services"],
         "summary": "services",
@@ -671,7 +671,7 @@
       }
     },
     "/api/requests/": {
-      "get": {
+      "post": {
         "operationId": "filterByDate",
         "tags": ["/requests"],
         "summary": "requests",
@@ -759,6 +759,100 @@
                 "code": 201,
                 "data": {
                   "result": {
+                    "_id": "ldskfJKLLzsdc",
+                    "patientId": "ldskfJKLLzsdc",
+                    "services": ["..."],
+                    "containers": ["..."]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/labors/": {
+      "get": {
+        "operationId": "allLabors",
+        "tags": ["/labors"],
+        "summary": "labors",
+        "description": "Returns an array of labors matching the given parameters",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "allLabors",
+            "in": "query",
+            "description": "array of all labors"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Ok",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/Labor"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 200,
+                "data": {
+                  "result": ["..."]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/labors/add": {
+      "post": {
+        "operationId": "addNewLabor",
+        "tags": ["/labors"],
+        "summary": "New labor add",
+        "description": "Returns the data of the new labor",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "addLabor",
+            "in": "body",
+            "description": "New labor to add",
+            "schema": {
+              "type": "object",
+              "required": ["laborName"],
+              "properties": {
+                "laborName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "schema": {
+              "$ref": "#/definitions/Labor"
+            },
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "code": 201,
+                "data": {
+                  "result": {
+                    "_id": "ldskfJKLLzsdc",
                     "patientId": "ldskfJKLLzsdc",
                     "services": ["..."],
                     "containers": ["..."]
@@ -885,6 +979,17 @@
         },
         "completed": {
           "type": "boolean"
+        }
+      }
+    },
+    "Labor": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "laborName": {
+          "type": "string"
         }
       }
     },
