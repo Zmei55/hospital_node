@@ -11,7 +11,7 @@ const getByName = async (req, res) => {
   }
   // only name
   if (patientName !== '' && birthDate === '' && cardNumber === '') {
-    result = await Patient.find({ name: patientName });
+    result = await Patient.find({ name: { $regex: patientName } });
   }
   // only birthDate
   if (patientName === '' && birthDate !== '' && cardNumber === '') {
@@ -23,12 +23,15 @@ const getByName = async (req, res) => {
   }
   // name and birthDate
   if (patientName !== '' && birthDate !== '' && cardNumber === '') {
-    result = await Patient.find({ name: patientName, birthDate: birthDate });
+    result = await Patient.find({
+      name: { $regex: patientName },
+      birthDate: birthDate,
+    });
   }
   // all fields
   if (patientName !== '' && birthDate !== '' && cardNumber !== '') {
     result = await Patient.find({
-      name: patientName,
+      name: { $regex: patientName },
       birthDate: birthDate,
       cardNumber: cardNumber,
     });
