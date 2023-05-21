@@ -11,7 +11,7 @@ const laborSchema = Schema(
       required: true,
       default: true,
     },
-    residenceAddress: {
+    laborAddress: {
       street: {
         type: String,
         required: true,
