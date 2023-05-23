@@ -11,4 +11,7 @@ router.post('/add', auth, ctrlWrapper(ctrl.addService));
 //? POST поиск услуг по фильтру
 router.post('/', auth, ctrlWrapper(ctrl.getServicesByName));
 
+//? GET получить список всех услуг
+router.get('/', auth, ctrlWrapper(ctrl.getAllServices));
+
 module.exports = router;
