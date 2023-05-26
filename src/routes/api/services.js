@@ -8,6 +8,9 @@ const router = express.Router();
 //? POST на добавление услуги
 router.post('/add', auth, ctrlWrapper(ctrl.addService));
 
+//? GET по id
+router.get('/:id', auth, ctrlWrapper(ctrl.getServiceById));
+
 //? POST поиск услуг по фильтру
 router.post('/', auth, ctrlWrapper(ctrl.getServicesByName));
 
