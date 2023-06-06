@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const laborSchema = Schema(
   {
-    laborName: {
+    name: {
       type: String,
       required: true,
     },

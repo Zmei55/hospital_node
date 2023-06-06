@@ -1,4 +1,4 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const requestSchema = Schema(
   {
@@ -7,21 +7,14 @@ const requestSchema = Schema(
       required: true,
     },
     patient: {
-      type: SchemaTypes.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'patients',
       required: true,
     },
     details: [
       {
-        type: SchemaTypes.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'requestDetails',
-        required: true,
-        default: [],
-      },
-    ],
-    containers: [
-      {
-        type: Array,
         required: true,
         default: [],
       },
@@ -32,7 +25,7 @@ const requestSchema = Schema(
       default: false,
     },
     owner: {
-      type: SchemaTypes.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'users',
       required: true,
     },

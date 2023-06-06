@@ -2,11 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const serviceSchema = Schema(
   {
-    serviceName: {
+    name: {
       type: String,
       required: true,
     },
-    serviceCode: {
+    code: {
       type: String,
       required: true,
     },

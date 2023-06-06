@@ -17,7 +17,7 @@ router.post('/add', auth, ctrlWrapper(ctrl.addRequest));
 //? POST поиск запроса по фильтру
 router.post('/', auth, ctrlWrapper(ctrl.getRequestByData));
 
-//? GET на кол-во документов в коллекции requests
-router.get('/count', auth, ctrlWrapper(ctrl.getRequestsDBCount));
+//? POST получение кол-ва запросов
+router.post('/count', auth, ctrlWrapper(ctrl.getRequestsDBCount));
 
 module.exports = router;

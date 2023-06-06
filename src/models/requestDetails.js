@@ -1,22 +1,23 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const requestDetailsSchema = Schema(
   {
-    service: {
+    serviceId: {
       type: Schema.Types.ObjectId,
       ref: 'services',
       required: true,
     },
-    labor: {
+    laborId: {
       type: Schema.Types.ObjectId,
       ref: 'laboratories',
       required: true,
     },
-    result: {
-      type: Array,
-      required: true,
-      default: [],
-    },
+    // resultId: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'results',
+    //   required: true,
+    //   default: {},
+    // },
     completed: {
       type: Boolean,
       required: true,
