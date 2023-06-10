@@ -4,7 +4,7 @@ const { User } = require('../../models');
 
 const register = async (req, res) => {
   const { name, logName, password, station } = req.body;
-  const user = await User.findOne({ logName });
+  const user = await User.findOne({ logName }, '-createdAt -updatedAt');
   if (user) {
     throw new Conflict(`User with ${logName} already exist. Node`);
   }

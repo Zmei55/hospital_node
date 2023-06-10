@@ -3,7 +3,7 @@ const { Patient } = require('../../models');
 
 const removeById = async (req, res) => {
   const { id } = req.params;
-  const result = await Patient.findByIdAndRemove(id);
+  const result = await Patient.findByIdAndRemove(id, '-createdAt -updatedAt');
   if (!result) {
     throw new NotFound(`Patient with id=${id} not found. Node`);
   }

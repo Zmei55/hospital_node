@@ -8,7 +8,7 @@ const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
   const { logName, password, station } = req.body;
-  const user = await User.findOne({ logName });
+  const user = await User.findOne({ logName }, '-createdAt -updatedAt');
   const passCompare = bcrypt.compareSync(password, user.password);
   if (!user || !passCompare || user.station !== station) {
     throw new Unauthorized('Login or password is wrong. Node');
