@@ -5,10 +5,10 @@ const { requestDetails: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? GET одного по id
+//? GET request detail by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getRequestDetailsById));
 
-//? POST на добавление запроса
+//? POST add new request detail
 router.post('/add', auth, ctrlWrapper(ctrl.addRequestDetails));
 
 module.exports = router;

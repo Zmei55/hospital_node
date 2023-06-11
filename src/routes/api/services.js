@@ -5,16 +5,16 @@ const { services: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? POST на добавление услуги
+//? POST add service
 router.post('/add', auth, ctrlWrapper(ctrl.addService));
 
-//? GET по id
+//? GET service by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getServiceById));
 
-//? POST поиск услуг по фильтру
+//? POST services search by filter (req.body)
 router.post('/', auth, ctrlWrapper(ctrl.getServicesByName));
 
-//? GET получить список всех услуг
+//? GET all services
 router.get('/', auth, ctrlWrapper(ctrl.getAllServices));
 
 module.exports = router;

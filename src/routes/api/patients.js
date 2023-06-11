@@ -5,19 +5,19 @@ const { patients: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? GET всех пациентов
+//? GET all patients
 router.get('/', auth, ctrlWrapper(ctrl.getAll));
 
-//? GET одного пациента по id
+//? GET patient by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
-//? POST поиск пациента по полю переданному в теле запроса
+//? POST patient search by field in the request body поиск пациента по полю переданному в теле запроса
 router.post('/', auth, ctrlWrapper(ctrl.getByData));
 
-//? POST на добавление пациента
+//? POST add patient
 router.post('/add', auth, ctrlWrapper(ctrl.add));
 
-//? DELETE на удаление пациента
+//? DELETE patient by id
 router.delete('/:id', auth, ctrlWrapper(ctrl.removeById));
 
 module.exports = router;

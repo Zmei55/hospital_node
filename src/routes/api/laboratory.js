@@ -5,13 +5,13 @@ const { labors: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? POST на добавление
+//? POST add laboratory
 router.post('/add', auth, ctrlWrapper(ctrl.addLabor));
 
-//? GET одного пациента по id
+//? GET laboratory by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getLaborById));
 
-//? POST поиск запроса по фильтру
+//? GET all laboratories
 router.get('/', auth, ctrlWrapper(ctrl.getAllLabors));
 
 module.exports = router;

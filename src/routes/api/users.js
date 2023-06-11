@@ -5,7 +5,13 @@ const { users: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? GET current
+//? POST add new user
+router.post('/add', auth, ctrlWrapper(ctrl.addUser));
+
+//?GET user by id
+router.get('/:id', auth, ctrlWrapper(ctrl.getById));
+
+//? GET current user
 router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
 
 //? DELETE remove

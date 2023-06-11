@@ -5,19 +5,19 @@ const { requests: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? GET получение списка всех запросов
+//? GET all requests
 router.get('/', auth, ctrlWrapper(ctrl.getAllRequests));
 
-//? GET одного запроса по id
+//? GET request by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getRequestById));
 
-//? POST на добавление запроса
+//? POST add new request
 router.post('/add', auth, ctrlWrapper(ctrl.addRequest));
 
-//? POST поиск запроса по фильтру
+//? POST request search by filter
 router.post('/', auth, ctrlWrapper(ctrl.getRequestByData));
 
-//? POST получение кол-ва запросов
+//? POST number of requests
 router.post('/count', auth, ctrlWrapper(ctrl.getRequestsDBCount));
 
 module.exports = router;
