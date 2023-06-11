@@ -1,7 +1,7 @@
 const { NotFound } = require('http-errors');
 const { Service } = require('../../models');
 
-const getServiceById = async (req, res) => {
+const getById = async (req, res) => {
   const { id } = req.params;
   const result = await Service.findById(id, '-createdAt -updatedAt');
   if (!result) {
@@ -16,4 +16,4 @@ const getServiceById = async (req, res) => {
   });
 };
 
-module.exports = getServiceById;
+module.exports = getById;

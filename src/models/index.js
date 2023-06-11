@@ -5,6 +5,7 @@ const RequestDetails = require('./requestDetails');
 const RequestSearch = require('./requestSearch');
 const Service = require('./service');
 const Labor = require('./laboratory');
+const Address = require('./address');
 
 module.exports = {
   User,
@@ -14,4 +15,5 @@ module.exports = {
   RequestSearch,
   Service,
   Labor,
+  Address,
 };

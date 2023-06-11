@@ -1,7 +1,7 @@
 const { NotFound } = require('http-errors');
 const { Service } = require('../../models');
 
-const getServicesByName = async (req, res) => {
+const getByName = async (req, res) => {
   const { filter } = req.body;
 
   let result = [];
@@ -22,4 +22,4 @@ const getServicesByName = async (req, res) => {
   });
 };
 
-module.exports = getServicesByName;
+module.exports = getByName;

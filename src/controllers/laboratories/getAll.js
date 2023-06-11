@@ -1,6 +1,6 @@
 const { Labor } = require('../../models');
 
-const getAllLabors = async (req, res) => {
+const getAll = async (req, res) => {
   const result = await Labor.find({}, '-createdAt -updatedAt');
   if (result.length === 0) {
     throw new NotFound('Labors not found. Node');
@@ -14,4 +14,4 @@ const getAllLabors = async (req, res) => {
   });
 };
 
-module.exports = getAllLabors;
+module.exports = getAll;

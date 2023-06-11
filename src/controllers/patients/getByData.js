@@ -20,6 +20,7 @@ const getByData = async (req, res) => {
   if (result.length === 0) {
     throw new NotFound(`Patient with name=${patientName} not found. Node`);
   }
+
   res.json({
     status: 'success',
     code: 200,

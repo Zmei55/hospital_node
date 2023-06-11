@@ -1,4 +1,5 @@
-const getRequestDetailsById = require('./getRequestDetailsById');
-const addRequestDetails = require('./addRequestDetails');
+const add = require('./add');
+const getById = require('./getById');
+const updateById = require('./updateById');
 
-// module.exports = { getRequestDetailsById, addRequestDetails };
+module.exports = { getById, add, updateById };

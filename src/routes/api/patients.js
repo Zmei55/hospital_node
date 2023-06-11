@@ -5,17 +5,20 @@ const { patients: ctrl } = require('../../controllers');
 
 const router = express.Router();
 
-//? GET all patients
-router.get('/', auth, ctrlWrapper(ctrl.getAll));
+//? POST add patient
+router.post('/add', auth, ctrlWrapper(ctrl.add));
 
 //? GET patient by id
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
-//? POST patient search by field in the request body поиск пациента по полю переданному в теле запроса
+//? POST patients search by filter
 router.post('/', auth, ctrlWrapper(ctrl.getByData));
 
-//? POST add patient
-router.post('/add', auth, ctrlWrapper(ctrl.add));
+//? GET all patients
+router.get('/', auth, ctrlWrapper(ctrl.getAll));
+
+//? PUT update patient by id
+router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
 
 //? DELETE patient by id
 router.delete('/:id', auth, ctrlWrapper(ctrl.removeById));

@@ -1,7 +1,7 @@
 const { Request } = require('../../models');
 const { RequestDetails } = require('../../models');
 
-const addRequest = async (req, res) => {
+const add = async (req, res) => {
   const { _id } = req.user;
   const { requestNumber, patientId, requestDetails } = req.body;
 
@@ -30,4 +30,4 @@ const addRequest = async (req, res) => {
   });
 };
 
-module.exports = addRequest;
+module.exports = add;

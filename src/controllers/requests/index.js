@@ -1,13 +1,15 @@
-const addRequest = require('./addRequest');
-const getRequestById = require('./getRequestById');
-const getRequestByData = require('./getRequestByData');
-const getAllRequests = require('./getAllRequests');
+const add = require('./add');
+const getById = require('./getById');
+const getByData = require('./getByData');
+const getAll = require('./getAll');
 const getRequestsDBCount = require('./getRequestsDBCount');
+const updateById = require('./updateById');
 
 module.exports = {
-  addRequest,
-  getRequestById,
-  getRequestByData,
-  getAllRequests,
+  add,
+  getById,
+  getByData,
+  getAll,
   getRequestsDBCount,
+  updateById,
 };

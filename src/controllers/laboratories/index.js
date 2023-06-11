@@ -1,9 +1,11 @@
-const addLabor = require('./addLabor');
-const getLaborById = require('./getLaborById');
-const getAllLabors = require('./getAllLabors');
+const add = require('./add');
+const getById = require('./getById');
+const getAll = require('./getAll');
+const updateById = require('./updateById');
 
 module.exports = {
-  addLabor,
-  getLaborById,
-  getAllLabors,
+  add,
+  getById,
+  getAll,
+  updateById,
 };

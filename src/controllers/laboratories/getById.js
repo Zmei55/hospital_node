@@ -1,7 +1,7 @@
 const { NotFound } = require('http-errors');
 const { Labor } = require('../../models');
 
-const getLaborById = async (req, res) => {
+const getById = async (req, res) => {
   const { id } = req.params;
   const result = await Labor.findById(id, '-createdAt -updatedAt');
   if (!result) {
@@ -16,4 +16,4 @@ const getLaborById = async (req, res) => {
   });
 };
 
-module.exports = getLaborById;
+module.exports = getById;

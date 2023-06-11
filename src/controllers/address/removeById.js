@@ -1,13 +1,13 @@
 const { NotFound } = require('http-errors');
-const { Patient } = require('../../models');
+const { Address } = require('../../models');
 
 const removeById = async (req, res) => {
   const { id } = req.params;
 
-  const result = await Patient.findByIdAndRemove(id, '-createdAt -updatedAt');
+  const result = await Address.findByIdAndRemove(id, '-createdAt -updatedAt');
 
   if (!result) {
-    throw new NotFound(`Patient with id=${id} not found. Node`);
+    throw new NotFound(`Address with id=${id} not found. Node`);
   }
 
   res.json({

@@ -14,4 +14,7 @@ router.get('/:id', auth, ctrlWrapper(ctrl.getLaborById));
 //? GET all laboratories
 router.get('/', auth, ctrlWrapper(ctrl.getAllLabors));
 
+//? PUT update laboratory
+router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
+
 module.exports = router;

@@ -11,7 +11,7 @@ const patientsRouter = require('./src/routes/api/patients');
 const servicesRouter = require('./src/routes/api/services');
 const requestsRouter = require('./src/routes/api/requests');
 const requestDetailsRouter = require('./src/routes/api/requestDetails');
-const laborsRouter = require('./src/routes/api/laboratory');
+const laborsRouter = require('./src/routes/api/laboratories');
 
 const app = express();
 

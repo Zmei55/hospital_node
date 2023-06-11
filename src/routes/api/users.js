@@ -14,6 +14,9 @@ router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 //? GET current user
 router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
 
+//? PUT update user
+router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
+
 //? DELETE remove
 router.delete('/:id', auth, ctrlWrapper(ctrl.removeById));
 

@@ -1,6 +1,6 @@
 const { RequestSearch } = require('../../models');
 
-const getRequestByData = async (req, res) => {
+const getByData = async (req, res) => {
   const { name, cardNumber, requestNumber, dateCreation } = req.body;
 
   let result = [];
@@ -30,4 +30,4 @@ const getRequestByData = async (req, res) => {
   });
 };
 
-module.exports = getRequestByData;
+module.exports = getByData;

@@ -5,6 +5,7 @@ const requests = require('./requests');
 const requestDetails = require('./requestDetails');
 const services = require('./services');
 const labors = require('./laboratories');
+const addresses = require('./address');
 
 module.exports = {
   auth,
@@ -14,4 +15,5 @@ module.exports = {
   requestDetails,
   services,
   labors,
+  addresses,
 };

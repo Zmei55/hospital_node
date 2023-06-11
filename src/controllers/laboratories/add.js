@@ -1,6 +1,6 @@
 const { Labor } = require('../../models');
 
-const addLabor = async (req, res) => {
+const add = async (req, res) => {
   const result = await Labor.create({ ...req.body });
   res.status(201).json({
     status: 'success',
@@ -11,4 +11,4 @@ const addLabor = async (req, res) => {
   });
 };
 
-module.exports = addLabor;
+module.exports = add;

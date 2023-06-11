@@ -1,7 +1,7 @@
 const { NotFound } = require('http-errors');
 const { Request } = require('../../models');
 
-const getAllRequests = async (req, res) => {
+const getAll = async (req, res) => {
   const result = await Request.find({}, '-createdAt -updatedAt');
   if (result.length === 0) {
     throw new NotFound('Requests not found. Node');
@@ -15,4 +15,4 @@ const getAllRequests = async (req, res) => {
   });
 };
 
-module.exports = getAllRequests;
+module.exports = getAll;

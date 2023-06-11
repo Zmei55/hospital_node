@@ -14,6 +14,9 @@ router.get('/:id', auth, ctrlWrapper(ctrl.getServiceById));
 //? POST services search by filter (req.body)
 router.post('/', auth, ctrlWrapper(ctrl.getServicesByName));
 
+//? PUT update service
+router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
+
 //? GET all services
 router.get('/', auth, ctrlWrapper(ctrl.getAllServices));
 
