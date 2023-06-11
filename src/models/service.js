@@ -18,6 +18,6 @@ const serviceSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Service = model('service', serviceSchema);
+const Service = model('services', serviceSchema);
 
 module.exports = Service;

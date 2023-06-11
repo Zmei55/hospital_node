@@ -33,6 +33,6 @@ const laborSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Labor = model('laboratory', laborSchema);
+const Labor = model('laboratories', laborSchema);
 
 module.exports = Labor;

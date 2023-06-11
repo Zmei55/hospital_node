@@ -6,17 +6,16 @@ const requestSchema = Schema(
       type: Number,
       required: true,
     },
-    patient: {
+    patientId: {
       type: Schema.Types.ObjectId,
       ref: 'patients',
       required: true,
     },
-    details: [
+    requestDetails: [
       {
         type: Schema.Types.ObjectId,
         ref: 'requestDetails',
         required: true,
-        default: [],
       },
     ],
     completed: {
@@ -33,6 +32,6 @@ const requestSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Request = model('request', requestSchema);
+const Request = model('requests', requestSchema);
 
 module.exports = Request;

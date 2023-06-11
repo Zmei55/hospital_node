@@ -57,6 +57,6 @@ const patientSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Patient = model('patient', patientSchema);
+const Patient = model('patients', patientSchema);
 
 module.exports = Patient;

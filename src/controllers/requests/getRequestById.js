@@ -3,7 +3,7 @@ const { Request } = require('../../models');
 
 const getRequestById = async (req, res) => {
   const { id } = req.params;
-  const result = await Request.findById(id);
+  const result = await Request.findById(id, '-createdAt -updatedAt');
   if (!result) {
     throw new NotFound(`Request with id=${id} not found. Node`);
   }
