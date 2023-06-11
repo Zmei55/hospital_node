@@ -1,7 +1,7 @@
-const { customCardNumber } = require('nanoid');
+const { customAlphabet } = require('nanoid');
 const { Patient } = require('../../models');
 
-const nanoid = customCardNumber('1234567890', 9);
+const nanoid = customAlphabet('1234567890', 9);
 
 const add = async (req, res) => {
   const result = await Patient.create({ ...req.body, cardNumber: nanoid() });
