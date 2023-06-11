@@ -14,6 +14,9 @@ router.post('/add', auth, ctrlWrapper(ctrl.getById));
 //? POST address search by filter
 router.post('/add', auth, ctrlWrapper(ctrl.getByData));
 
+//? GET all addresses
+router.get('/', auth, ctrlWrapper(ctrl.getAll));
+
 //? PUT update address
 router.post('/add', auth, ctrlWrapper(ctrl.updateById));
 
