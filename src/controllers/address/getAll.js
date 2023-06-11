@@ -1,11 +1,11 @@
 const { NotFound } = require('http-errors');
-const { Request } = require('../../models');
+const { Address } = require('../../models');
 
 const getAll = async (req, res) => {
-  const result = await Request.find({}, '-createdAt -updatedAt');
+  const result = await Address.find({}, '-createdAt -updatedAt');
 
   if (result.length === 0) {
-    throw new NotFound('Requests not found. Node');
+    throw new NotFound('Address not found. Node');
   }
 
   res.json({

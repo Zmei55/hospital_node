@@ -13,6 +13,7 @@ const getByName = async (req, res) => {
   if (result.length === 0) {
     throw new NotFound(`Services with name=${serviceName} not found. Node`);
   }
+
   res.json({
     status: 'success',
     code: 200,
