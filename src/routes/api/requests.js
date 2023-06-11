@@ -6,16 +6,16 @@ const { requests: ctrl } = require('../../controllers');
 const router = express.Router();
 
 //? POST add new request
-router.post('/add', auth, ctrlWrapper(ctrl.addRequest));
+router.post('/add', auth, ctrlWrapper(ctrl.add));
 
 //? GET request by id
-router.get('/:id', auth, ctrlWrapper(ctrl.getRequestById));
+router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
 //? POST request search by filter
-router.post('/', auth, ctrlWrapper(ctrl.getRequestByData));
+router.post('/', auth, ctrlWrapper(ctrl.getByData));
 
 //? GET all requests
-router.get('/', auth, ctrlWrapper(ctrl.getAllRequests));
+router.get('/', auth, ctrlWrapper(ctrl.getAll));
 
 //? PUT update request
 router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
