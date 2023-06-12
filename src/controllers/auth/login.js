@@ -28,7 +28,8 @@ const login = async (req, res) => {
     code: 200,
     data: {
       user: {
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         logName: user.logName,
         station: user.station,
       },

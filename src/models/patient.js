@@ -4,7 +4,11 @@ const cardRegexp = /^[0-9]{9}$/;
 
 const patientSchema = Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
       type: String,
       required: true,
     },
@@ -28,7 +32,10 @@ const patientSchema = Schema(
       type: String,
       required: true,
     },
-    email: String,
+    email: {
+      type: String,
+      required: true,
+    },
     identityDocument: {
       type: String,
       required: true,

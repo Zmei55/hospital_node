@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../../models');
 
 const register = async (req, res) => {
-  const { name, logName, password, station } = req.body;
+  const { firstName, lastName, logName, password, station } = req.body;
   const user = await User.findOne({ logName }, '-createdAt -updatedAt');
 
   if (user) {
@@ -12,14 +12,21 @@ const register = async (req, res) => {
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-  await User.create({ name, logName, password: hashPassword, station });
+  await User.create({
+    firstName,
+    lastName,
+    logName,
+    password: hashPassword,
+    station,
+  });
 
   res.status(201).json({
     status: 'success',
     code: 201,
     data: {
       user: {
-        name,
+        firstName,
+        lastName,
         logName,
         station,
       },
