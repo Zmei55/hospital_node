@@ -10,7 +10,7 @@ const serviceSchema = Schema(
       type: String,
       required: true,
     },
-    serviceIsActive: {
+    isActive: {
       type: Boolean,
       required: true,
     },

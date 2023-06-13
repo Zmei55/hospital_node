@@ -7,21 +7,16 @@ const getByName = async (req, res) => {
   let result = [];
 
   if (filter === '') {
-    result = await Service.find({});
+    result = await Service.find({ isActive: true });
   } else {
     result = await Service.find(
-      { serviceName: { $regex: filter } },
+      { $and: [{ name: { $regex: filter } }, { isActive: true }] },
       '-createdAt -updatedAt'
     );
   }
 
-  // result = await Service.find(
-  //   { serviceName: { $regex: filter } },
-  //   '-createdAt -updatedAt'
-  // );
-
   if (result.length === 0) {
-    throw new NotFound(`Services with name=${serviceName} not found. Node`);
+    throw new NotFound(`Services with name=${filter} not found. Node`);
   }
 
   res.json({

@@ -4,7 +4,11 @@ const { RequestDetails } = require('../../models');
 const getById = async (req, res) => {
   const { id } = req.params;
 
-  const result = await RequestDetails.findById(id, '-createdAt -updatedAt');
+  const result = await RequestDetails.findById(
+    id,
+    '-createdAt -updatedAt'
+  ).populate('serviceId laborId', 'name code isActive isActive -_id');
+
   if (!result) {
     throw new NotFound(`RequestDetails with id=${id} not found. Node`);
   }

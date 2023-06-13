@@ -6,28 +6,15 @@ const laborSchema = Schema(
       type: String,
       required: true,
     },
-    laborIsActive: {
+    isActive: {
       type: Boolean,
       required: true,
       default: true,
     },
-    laborAddress: {
-      street: {
-        type: String,
-        required: true,
-      },
-      houseNumber: {
-        type: String,
-        required: true,
-      },
-      city: {
-        type: String,
-        required: true,
-      },
-      postcode: {
-        type: String,
-        required: true,
-      },
+    address: {
+      type: Schema.Types.ObjectId,
+      ref: 'addresses',
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }

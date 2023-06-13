@@ -1,7 +1,10 @@
 const { Labor } = require('../../models');
 
 const getAll = async (req, res) => {
-  const result = await Labor.find({}, '-createdAt -updatedAt');
+  const result = await Labor.find(
+    { isActive: true },
+    '-createdAt -updatedAt'
+  ).populate('address', '-_id');
 
   if (result.length === 0) {
     throw new NotFound('Labors not found. Node');
