@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
 require('dotenv').config();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./src/utils/swagger.json');
@@ -16,6 +17,10 @@ const addressesRouter = require('./src/routes/api/addresses');
 
 const app = express();
 
+const upload = multer({
+  dest: 'uploads/',
+});
+
 app.use(
   cors({
     credentials: true,
@@ -28,9 +33,9 @@ app.use(
 );
 app.use(express.json());
 
-app.use('/api/auth', authRouter);
+app.use('/api/auth', upload.none(), authRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/patients', patientsRouter);
+app.use('/api/patients', upload.none(), patientsRouter);
 app.use('/api/services', servicesRouter);
 app.use('/api/requests', requestsRouter);
 app.use('/api/requestDetails', requestDetailsRouter);
