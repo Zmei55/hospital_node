@@ -12,10 +12,7 @@ const getByData = async (req, res) => {
     birthDate === '' &&
     cardNumber === ''
   ) {
-    result = await Patient.find({}, 'firstName lastName birthDate cardNumber');
-
-    //! сделать обработку ошибки или проверку на фронте, чтоб не приходило пустое
-    // если приходят все пустые поля, то приложение падает
+    result = await Patient.find({});
   } else {
     result = await Patient.find(
       {
