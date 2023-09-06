@@ -36,7 +36,7 @@ app.use(express.json());
 app.use('/api/auth', upload.none(), authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/patients', upload.none(), patientsRouter);
-app.use('/api/services', servicesRouter);
+app.use('/api/services', upload.none(), servicesRouter);
 app.use('/api/requests', requestsRouter);
 app.use('/api/requestDetails', requestDetailsRouter);
 app.use('/api/labors', laborsRouter);
