@@ -7,7 +7,7 @@ const addressSchema = Schema(
       required: true,
     },
     houseNumber: {
-      type: String,
+      type: Number,
       required: true,
     },
     city: {
@@ -15,7 +15,7 @@ const addressSchema = Schema(
       required: true,
     },
     postcode: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

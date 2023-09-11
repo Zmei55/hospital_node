@@ -3,36 +3,27 @@ const { RequestSearch } = require('../../models');
 const getByData = async (req, res) => {
   const { firstName, lastName, cardNumber, requestNumber, dateCreation } =
     req.body;
+  console.log(req.body);
 
-  let result = [];
-
-  if (
-    firstName === '' &&
-    lastName === '' &&
-    cardNumber === '' &&
-    requestNumber === '' &&
-    dateCreation === ''
-  ) {
-    result = await RequestSearch.find({});
-  } else {
-    result = await RequestSearch.find(
-      {
-        $or: [
-          {
-            firstName: firstName === '' ? null : { $in: [firstName, lastName] },
-          },
-          { lastName: lastName === '' ? null : { $in: [firstName, lastName] } },
-          { cardNumber: cardNumber === '' ? null : cardNumber },
-          { requestNumber: requestNumber === '' ? null : requestNumber },
-          { createdAt: dateCreation === '' ? null : dateCreation },
-        ],
-      },
-      '-updatedAt'
-    );
-  }
+  const result = await RequestSearch.find(
+    {
+      $or: [
+        {
+          firstName: firstName === '' ? null : { $in: [firstName, lastName] },
+        },
+        { lastName: lastName === '' ? null : { $in: [firstName, lastName] } },
+        { cardNumber: cardNumber === '' ? null : parseInt(cardNumber) },
+        {
+          requestNumber: requestNumber === '' ? null : parseInt(requestNumber),
+        },
+        { createdAt: dateCreation === '' ? null : dateCreation },
+      ],
+    },
+    'firstName lastName cardNumber requestNumber createdAt'
+  );
 
   if (result.length === 0) {
-    throw new NotFound(`Patient with name=${patientName} not found. Node`);
+    throw new NotFound(`Request not found. Node`);
   }
 
   res.json({
