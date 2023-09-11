@@ -3,7 +3,6 @@ const { RequestSearch } = require('../../models');
 const getByData = async (req, res) => {
   const { firstName, lastName, cardNumber, requestNumber, dateCreation } =
     req.body;
-  console.log(req.body);
 
   const result = await RequestSearch.find(
     {
