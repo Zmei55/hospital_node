@@ -7,7 +7,7 @@ const getById = async (req, res) => {
   const result = await RequestDetails.findById(
     id,
     '-createdAt -updatedAt'
-  ).populate('serviceId laborId', 'name code isActive isActive -_id');
+  ).populate('serviceId laborId', '_id name code isActive');
 
   if (!result) {
     throw new NotFound(`RequestDetails with id=${id} not found. Node`);
