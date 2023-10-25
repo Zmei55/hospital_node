@@ -3,21 +3,20 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../../models');
 
 const register = async (req, res) => {
-  const { firstName, lastName, logName, password, station } = req.body;
-  const user = await User.findOne({ logName }, '-createdAt -updatedAt');
+  const { name, username, password, workplace } = req.body;
+  const user = await User.findOne({ username }, '-createdAt -updatedAt');
 
   if (user) {
-    throw new Conflict(`User with ${logName} already exist. Node`);
+    throw new Conflict(`User with ${username} already exist. Node`);
   }
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
   await User.create({
-    firstName,
-    lastName,
-    logName,
+    name,
+    username,
     password: hashPassword,
-    station,
+    workplace,
   });
 
   res.status(201).json({
@@ -25,10 +24,9 @@ const register = async (req, res) => {
     code: 201,
     data: {
       user: {
-        firstName,
-        lastName,
-        logName,
-        station,
+        name,
+        username,
+        workplace,
       },
     },
   });

@@ -28,18 +28,18 @@
             "description": "New user to add",
             "schema": {
               "type": "object",
-              "required": ["name", "logName", "password", "station"],
+              "required": ["name", "username", "password", "workplace"],
               "properties": {
                 "name": {
                   "type": "string"
                 },
-                "logName": {
+                "username": {
                   "type": "string"
                 },
                 "password": {
                   "type": "string"
                 },
-                "station": {
+                "workplace": {
                   "type": "string"
                 }
               }
@@ -59,8 +59,8 @@
                 "data": {
                   "user": {
                     "name": "UserName",
-                    "logName": "zxc",
-                    "station": "neurologisch"
+                    "username": "zxc",
+                    "workplace": "neurologisch"
                   },
                   "token": "lkdfjaskdjhf8928er.dfhjaksdjhfksjKDJLSKDJLSsdlkfslkd.kjsdfkjsr3209kjdfsl"
                 }
@@ -84,15 +84,15 @@
             "description": "User authorization",
             "schema": {
               "type": "object",
-              "required": ["logName", "password", "station"],
+              "required": ["username", "password", "workplace"],
               "properties": {
-                "logName": {
+                "username": {
                   "type": "string"
                 },
                 "password": {
                   "type": "string"
                 },
-                "station": {
+                "workplace": {
                   "type": "string"
                 }
               }
@@ -112,8 +112,8 @@
                 "data": {
                   "user": {
                     "name": "UserName",
-                    "logName": "zxc",
-                    "station": "neurologisch"
+                    "username": "zxc",
+                    "workplace": "neurologisch"
                   },
                   "token": "lkdfjaskdjhf8928er.dfhjaksdjhfksjKDJLSKDJLSsdlkfslkd.kjsdfkjsr3209kjdfsl"
                 }
@@ -193,8 +193,8 @@
                 "data": {
                   "user": {
                     "name": "UserName",
-                    "logName": "zxc",
-                    "station": "neurologisch"
+                    "username": "zxc",
+                    "workplace": "neurologisch"
                   }
                 }
               }
@@ -882,10 +882,10 @@
         "name": {
           "type": "string"
         },
-        "logName": {
+        "username": {
           "type": "string"
         },
-        "station": {
+        "workplace": {
           "type": "string"
         },
         "token": {
