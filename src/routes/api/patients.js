@@ -12,7 +12,7 @@ router.post('/add', auth, ctrlWrapper(ctrl.add));
 router.get('/:id', auth, ctrlWrapper(ctrl.getById));
 
 //? POST patients search by filter
-router.post('/', auth, ctrlWrapper(ctrl.getByData));
+router.post('/', auth, ctrlWrapper(ctrl.getByFilter));
 
 //? GET all patients
 router.get('/', auth, ctrlWrapper(ctrl.getAll));

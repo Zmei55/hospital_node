@@ -2,15 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const userSchema = Schema(
   {
-    firstName: {
+    name: {
       type: String,
       required: true,
     },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    logName: {
+    username: {
       type: String,
       required: true,
       unique: true, // необходима ещё настройка индексов в БД
@@ -20,7 +16,7 @@ const userSchema = Schema(
       required: true,
       minlength: 6,
     },
-    station: {
+    workplace: {
       type: String,
       required: true,
     },

@@ -18,7 +18,7 @@ const requestSchema = Schema(
         required: true,
       },
     ],
-    completed: {
+    isCompleted: {
       type: Boolean,
       required: true,
       default: false,

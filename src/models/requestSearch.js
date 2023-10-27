@@ -2,11 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const requestSearchSchema = Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    name: {
       type: String,
       required: true,
     },
