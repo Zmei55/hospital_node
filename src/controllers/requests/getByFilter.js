@@ -4,12 +4,12 @@ const getByFilter = async (req, res) => {
   const { name, cardNumber, requestNumber, dateCreation } = req.body;
 
   let date = null;
-  if (dateCreation !== '') date = new Date(dateCreation);
+  if (dateCreation !== undefined) date = new Date(dateCreation);
 
   const result = await RequestSearch.find(
     {
       $or: [
-        { name: name === '' ? null : { $regex: name, $options: 'i' } },
+        { patientName: name === '' ? null : { $regex: name, $options: 'i' } },
         { cardNumber: cardNumber === '' ? null : cardNumber },
         {
           requestNumber: requestNumber === '' ? null : requestNumber,
@@ -17,7 +17,7 @@ const getByFilter = async (req, res) => {
         { createdAt: date },
       ],
     },
-    'name cardNumber requestNumber createdAt'
+    'patientName cardNumber requestNumber createdAt'
   );
 
   if (result.length === 0) {
