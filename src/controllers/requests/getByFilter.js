@@ -1,23 +1,35 @@
 const { RequestSearch } = require('../../models');
 
 const getByFilter = async (req, res) => {
-  const { name, cardNumber, requestNumber, dateCreation } = req.body;
+  const { patientName, cardNumber, requestNumber, requestDate } = req.body;
 
-  let date = null;
-  if (dateCreation !== '') date = new Date(dateCreation);
+  const minDateOfSearch = new Date(requestDate);
+  const maxDateOfSearch = new Date(minDateOfSearch);
+  maxDateOfSearch.setDate(minDateOfSearch.getDate() + 1);
 
   const result = await RequestSearch.find(
     {
       $or: [
-        { name: name === '' ? null : { $regex: name, $options: 'i' } },
-        { cardNumber: cardNumber === '' ? null : cardNumber },
         {
-          requestNumber: requestNumber === '' ? null : requestNumber,
+          patientName:
+            patientName === '' ? null : { $regex: patientName, $options: 'i' },
         },
-        { createdAt: date },
+        { cardNumber: cardNumber === '' ? null : parseInt(cardNumber) },
+        {
+          requestNumber: requestNumber === '' ? null : parseInt(requestNumber),
+        },
+        {
+          createdAt:
+            requestDate === ''
+              ? null
+              : {
+                  $gte: minDateOfSearch,
+                  $lte: maxDateOfSearch,
+                },
+        },
       ],
     },
-    'name cardNumber requestNumber createdAt'
+    'patientName cardNumber requestNumber createdAt'
   );
 
   if (result.length === 0) {
