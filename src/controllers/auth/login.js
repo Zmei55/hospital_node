@@ -31,6 +31,7 @@ const login = async (req, res) => {
         name: user.name,
         username: user.username,
         workplace: user.workplace,
+        position: user.position,
       },
       token,
     },

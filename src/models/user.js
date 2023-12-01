@@ -20,6 +20,10 @@ const userSchema = Schema(
       type: String,
       required: true,
     },
+    position: {
+      type: String,
+      required: true,
+    },
     token: {
       type: String,
       default: null,
