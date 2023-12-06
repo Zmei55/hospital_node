@@ -28,6 +28,16 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
+    isNotLocked: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    role: {
+      type: String,
+      required: true,
+      default: 'USER',
+    },
   },
   { versionKey: false, timestamps: true }
 );
