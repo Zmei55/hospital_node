@@ -20,10 +20,14 @@ const auth = (workplaces, roles = 'USER') => {
       }
 
       const { id } = jwt.verify(token, SECRET_KEY);
-      const user = await User.findById(id);
+      const user = await User.findById(id, '-password -updatedAt');
 
       if (!user || !user.token) {
         throw new Unauthorized('Not authorized');
+      }
+
+      if (user.isNotLocked) {
+        throw new Unauthorized('User is locked');
       }
 
       let hasRoles = false;

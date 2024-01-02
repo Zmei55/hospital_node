@@ -8,7 +8,7 @@ const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username }, '-createdAt -updatedAt');
+  const user = await User.findOne({ username }, '-updatedAt');
   const passCompare = bcrypt.compareSync(password, user.password);
 
   if (!user || !passCompare) {
