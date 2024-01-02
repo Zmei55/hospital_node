@@ -1,7 +1,7 @@
 const { NotFound } = require('http-errors');
 const { Address } = require('../../models');
 
-const getByData = async (req, res) => {
+const getByFilter = async (req, res) => {
   const { street, houseNumber, city, postcode } = req.body;
 
   const result = await Address.find(
@@ -26,4 +26,4 @@ const getByData = async (req, res) => {
   });
 };
 
-module.exports = getByData;
+module.exports = getByFilter;

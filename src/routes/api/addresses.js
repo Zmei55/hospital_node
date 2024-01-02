@@ -12,7 +12,7 @@ router.post('/add', auth('ALL'), ctrlWrapper(ctrl.add));
 router.get('/:id', auth('ALL'), ctrlWrapper(ctrl.getById));
 
 //? POST address search by filter
-router.post('/', auth('ALL'), ctrlWrapper(ctrl.getByData));
+router.post('/', auth('ALL'), ctrlWrapper(ctrl.getByFilter));
 
 //? GET all addresses
 router.get('/', auth('ALL'), ctrlWrapper(ctrl.getAll));
