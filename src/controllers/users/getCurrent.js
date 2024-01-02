@@ -1,6 +1,8 @@
 const { User } = require('../../models');
 
 const getCurrent = async (req, res) => {
+  console.log(req);
+  console.log(req.user);
   const { name, username, workplace, position } = req.user;
 
   res.json({

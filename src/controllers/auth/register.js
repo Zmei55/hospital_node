@@ -3,10 +3,12 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../../models');
 
 const register = async (req, res) => {
-  const { name, username, password, workplace } = req.body;
-  const user = await User.findOne({ username }, '-createdAt -updatedAt');
+  console.log(req.body);
+  const { name, username, password, station, workplace, position, role } =
+    req.body;
 
-  if (user) {
+  const candidate = await User.findOne({ username }, '-createdAt -updatedAt');
+  if (candidate) {
     throw new Conflict(`User with ${username} already exist. Node`);
   }
 
@@ -16,17 +18,23 @@ const register = async (req, res) => {
     name,
     username,
     password: hashPassword,
-    workplace,
+    station,
+    workplaces: [workplace],
+    position,
+    roles: [role],
   });
 
-  res.status(201).json({
+  return res.status(201).json({
     status: 'success',
     code: 201,
     data: {
       user: {
         name,
         username,
+        station,
         workplace,
+        position,
+        role,
       },
     },
   });

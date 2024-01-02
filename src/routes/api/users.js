@@ -9,10 +9,10 @@ const router = express.Router();
 router.post('/add', auth, ctrlWrapper(ctrl.addUser));
 
 //?GET user by id
-router.get('/:id', auth, ctrlWrapper(ctrl.getById));
+router.get('/:id', auth('ALL'), ctrlWrapper(ctrl.getById));
 
 //? GET current user
-router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
+router.get('/current', auth('ALL'), ctrlWrapper(ctrl.getCurrent));
 
 //? PUT update user
 router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
