@@ -14,7 +14,7 @@ const userIsNotLocked = async (req, res, next) => {
       '-_id -username -password -name -station -workplaces -position -token -roles  -createdAt -updatedAt'
     );
 
-    if (user.isNotLocked) {
+    if (!user.isNotLocked) {
       throw new Unauthorized('User is locked');
     }
 
