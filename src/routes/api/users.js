@@ -11,7 +11,14 @@ router.post('/add', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.addUser));
 //? GET current user
 router.get('/current', auth('ALL'), ctrlWrapper(ctrl.getCurrent));
 
-//?GET user by id
+//? GET add role
+router.post(
+  '/add-role/:id',
+  auth('ALL', 'ADMIN'),
+  ctrlWrapper(ctrl.addRoleById)
+);
+
+//? GET user by id
 router.get('/:id', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.getById));
 
 //? PUT update user
