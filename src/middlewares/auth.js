@@ -26,7 +26,7 @@ const auth = (workplaces, roles = 'USER') => {
         throw new Unauthorized('Not authorized');
       }
 
-      if (user.isNotLocked) {
+      if (!user.isNotLocked) {
         throw new Unauthorized('User is locked');
       }
 
