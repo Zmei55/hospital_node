@@ -6,21 +6,25 @@ const { requests: ctrl } = require('../../controllers');
 const router = express.Router();
 
 //? POST add new request
-router.post('/add', auth, ctrlWrapper(ctrl.add));
+router.post('/add', auth('TREATMENT_ROOM'), ctrlWrapper(ctrl.add));
 
 //? GET request by id
-router.get('/:id', auth, ctrlWrapper(ctrl.getById));
+router.get('/:id', auth('TREATMENT_ROOM'), ctrlWrapper(ctrl.getById));
 
 //? POST request search by filter
-router.post('/', auth, ctrlWrapper(ctrl.getByFilter));
+router.post('/', auth('TREATMENT_ROOM'), ctrlWrapper(ctrl.getByFilter));
 
 //? GET all requests
-router.get('/', auth, ctrlWrapper(ctrl.getAll));
+router.get('/', auth('TREATMENT_ROOM'), ctrlWrapper(ctrl.getAll));
 
 //? PUT update request
-router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
+router.put('/:id', auth('TREATMENT_ROOM'), ctrlWrapper(ctrl.updateById));
 
 //? POST number of requests
-router.post('/count', auth, ctrlWrapper(ctrl.getRequestsDBCount));
+router.post(
+  '/count',
+  auth('TREATMENT_ROOM'),
+  ctrlWrapper(ctrl.getRequestsDBCount)
+);
 
 module.exports = router;

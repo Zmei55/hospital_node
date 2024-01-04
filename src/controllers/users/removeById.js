@@ -3,7 +3,6 @@ const { User } = require('../../models');
 
 const removeById = async (req, res) => {
   const { id } = req.params;
-  const { name, username } = req.user;
 
   const result = await User.findByIdAndRemove(id);
 
@@ -16,8 +15,8 @@ const removeById = async (req, res) => {
     code: 200,
     data: {
       user: {
-        name,
-        username,
+        name: result.name,
+        username: result.username,
       },
     },
   });
