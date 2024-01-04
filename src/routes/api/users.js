@@ -6,18 +6,25 @@ const { users: ctrl } = require('../../controllers');
 const router = express.Router();
 
 //? POST add new user
-router.post('/add', auth, ctrlWrapper(ctrl.addUser));
-
-//?GET user by id
-router.get('/:id', auth, ctrlWrapper(ctrl.getById));
+router.post('/add', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.addUser));
 
 //? GET current user
-router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
+router.get('/current', auth('ALL'), ctrlWrapper(ctrl.getCurrent));
+
+//? GET add role
+router.post(
+  '/add-role/:id',
+  auth('ALL', 'ADMIN'),
+  ctrlWrapper(ctrl.addRoleById)
+);
+
+//? GET user by id
+router.get('/:id', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.getById));
 
 //? PUT update user
-router.put('/:id', auth, ctrlWrapper(ctrl.updateById));
+router.put('/:id', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.updateById));
 
 //? DELETE remove
-router.delete('/:id', auth, ctrlWrapper(ctrl.removeById));
+router.delete('/:id', auth('ALL', 'ADMIN'), ctrlWrapper(ctrl.removeById));
 
 module.exports = router;

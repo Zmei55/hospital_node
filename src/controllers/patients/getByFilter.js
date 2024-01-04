@@ -3,14 +3,9 @@ const { Patient } = require('../../models');
 
 const getByFilter = async (req, res) => {
   const { name, birthDate, cardNumber } = req.body;
-  console.log(req.body);
 
   let date = null;
   if (birthDate !== '') date = new Date(birthDate);
-
-  console.log('name: ', name);
-  console.log('birthDate: ', birthDate);
-  console.log('cardNumber: ', cardNumber);
 
   const result = await Patient.find(
     {

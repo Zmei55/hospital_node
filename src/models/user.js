@@ -16,10 +16,8 @@ const userSchema = Schema(
       required: true,
       minlength: 6,
     },
-    workplace: {
-      type: String,
-      required: true,
-    },
+    station: { type: String },
+    workplaces: [{ type: String }],
     position: {
       type: String,
       required: true,
@@ -28,6 +26,18 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
+    isNotLocked: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    roles: [
+      {
+        type: String,
+        required: true,
+        default: 'USER',
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );
