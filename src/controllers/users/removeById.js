@@ -4,7 +4,7 @@ const { User } = require('../../models');
 const removeById = async (req, res) => {
   const { id } = req.params;
 
-  const result = await User.findByIdAndRemove(id);
+  const result = await User.findByIdAndRemove(id, 'name username');
 
   if (!result) {
     throw new NotFound(`User with id=${id} not found`);
@@ -13,12 +13,7 @@ const removeById = async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    data: {
-      user: {
-        name: result.name,
-        username: result.username,
-      },
-    },
+    data: result,
   });
 };
 
