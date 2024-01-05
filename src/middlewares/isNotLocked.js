@@ -9,10 +9,7 @@ const userIsNotLocked = async (req, res, next) => {
   const { username } = req.body;
 
   try {
-    const user = await User.findOne(
-      { username },
-      '-_id -username -password -name -station -workplaces -position -token -roles  -createdAt -updatedAt'
-    );
+    const user = await User.findOne({ username }, 'isNotLocked');
 
     if (!user.isNotLocked) {
       throw new Unauthorized('User is locked');

@@ -13,7 +13,15 @@ const updateById = async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    data: result,
+    data: {
+      _id: result._id,
+      name: result.name,
+      username: result.username,
+      department: result.department,
+      workplaces: result.workplaces,
+      position: result.position,
+      roles: result.roles,
+    },
   });
 };
 

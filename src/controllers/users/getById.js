@@ -4,7 +4,7 @@ const { User } = require('../../models');
 const getById = async (req, res) => {
   const { id } = req.params;
 
-  const result = await User.findById(id, '-createdAt -updatedAt');
+  const result = await User.findById(id, '-password -token -updatedAt');
 
   if (!result) {
     throw new NotFound(`User with id=${id} not found. Node`);
