@@ -29,7 +29,15 @@ const addRoleById = async (req, res) => {
   res.status(200).json({
     status: 'success',
     code: 200,
-    data: newUser,
+    data: {
+      _id: newUser._id,
+      name: newUser.name,
+      username: newUser.username,
+      department: newUser.department,
+      workplaces: newUser.workplaces,
+      position: newUser.position,
+      roles: newUser.roles,
+    },
   });
 };
 

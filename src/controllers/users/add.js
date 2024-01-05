@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../../models');
 
 const add = async (req, res) => {
-  const { name, username, password, station, workplace, position, role } =
+  const { name, username, password, department, workplace, position, role } =
     req.body;
 
   const candidate = await User.findOne({ username }, '-createdAt -updatedAt');
@@ -13,11 +13,11 @@ const add = async (req, res) => {
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-  const result = await User.create({
+  const user = await User.create({
     name,
     username,
     password: hashPassword,
-    station,
+    department,
     workplaces: [workplace],
     position,
     roles: [role],
@@ -26,7 +26,15 @@ const add = async (req, res) => {
   res.status(201).json({
     status: 'success',
     code: 201,
-    data: result,
+    data: {
+      _id: user._id,
+      name: user.name,
+      username: user.username,
+      department: user.department,
+      workplaces: user.workplaces,
+      position: user.position,
+      roles: user.roles,
+    },
   });
 };
 

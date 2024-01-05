@@ -16,7 +16,7 @@ const userSchema = Schema(
       required: true,
       minlength: 6,
     },
-    station: { type: String },
+    department: { type: String },
     workplaces: [{ type: String }],
     position: {
       type: String,

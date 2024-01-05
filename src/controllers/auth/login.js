@@ -32,7 +32,7 @@ const login = async (req, res) => {
         _id: user._id,
         name: user.name,
         username: user.username,
-        station: user.station,
+        department: user.department,
         workplaces: user.workplaces,
         position: user.position,
         roles: user.roles,
